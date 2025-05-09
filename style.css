@@ -1,0 +1,138 @@
+/* ========== CSS Reset ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ========== Base Styles ========== */
+  body {
+    
+    /* background-color: #f9f9f9; */
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+  }
+  /* ================================first part==================== */
+  .first-part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #menu-wheel{ 
+    margin: 5% 2% 5% 2%;
+    width: 50%;
+    margin: 10%;
+  }
+  #empowering{
+    margin: 5% 2% 5% 2%;
+    overflow: hidden;
+    width: 50%;
+  }
+/*=============================== menu wheel part animation ====================================*/
+.zoom{
+    transition: transform 0.9s ease-in-out; 
+    transform-origin:center;
+    cursor: pointer;
+  }
+
+  .zoom:hover {
+    width: 300px;
+     transform: scale(0.9);
+  }
+  /* =========================empowering progress image animation======================================== */
+  .image {
+    
+    transform-origin: center;
+     animation: burst 6.5s ease-in-out infinite;
+    /* animation: burst 6.5s ease-out forwards; */
+  } 
+
+  /* Inner elements scale during burst */
+  .image > * {
+    transform-origin: center;
+    animation: scaleInner 5.5s ease-in-out infinite;
+    /* animation: scaleInner 5.5s ease-out forwards; */
+  }
+
+  @keyframes scaleInner {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    80% {
+      opacity: 1;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .image:nth-child(1) { animation-delay: 0s; }
+.image:nth-child(1) > * { animation-delay: 0s; }
+
+.image:nth-child(2) { animation-delay: 0.2s; }  
+.image:nth-child(2) > * { animation-delay: 0.2s; }  
+
+.image:nth-child(3) { animation-delay: 0.4s; }  
+.image:nth-child(3) > * { animation-delay: 0.4s; }  
+
+.image:nth-child(4) { animation-delay: 0.6s; }  
+.image:nth-child(4) > * { animation-delay: 0.6s; }  
+
+.image:nth-child(5) { animation-delay: 0.8s; }  
+.image:nth-child(5) > * { animation-delay: 0.8s; }
+
+/* Sequential burst delays */
+    /* .image:nth-child(1) { animation-delay: 0s; }
+    .image:nth-child(1) > * { animation-delay: 0s; }
+
+    .image:nth-child(2) { animation-delay: 0.3s; }
+    .image:nth-child(2) > * { animation-delay: 0.3s; }
+
+    .image:nth-child(3) { animation-delay: 0.0s; }
+    .image:nth-child(3) > * { animation-delay: 0.0s; }
+
+    .image:nth-child(4) { animation-delay: 0.3s; }
+    .image:nth-child(4) > * { animation-delay: 0.3s; }
+
+     .image:nth-child(5) { animation-delay: 0.0s; }
+    .image:nth-child(5) > * { animation-delay: 0.0s; }  */
+   /* =========================empowering progress animation======================================== */
+   
+ 
+
+
+
+
+/* ================================================================== */
+.historyContainer{
+
+  
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 100px;
+  /* height: 60%; */
+}
+
+ .history {
+      /* transition: transform 0.3s ease; */
+      transform-origin:center; 
+      position: absolute;
+      transition: transform 2.5s ease ;
+      cursor: pointer;
+    }
+
+   
+     .history:hover {
+      transform: scale(1.4); 
+    }
+    /*======================================About Us========================================  */
+    .organo{
+      background-color: aliceblue;
+    }
