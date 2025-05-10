@@ -25,11 +25,13 @@ fetch('ninesectionmenu.svg')
 });
 // =========================================================================
 
-fetch("/Contact Us.svg")
-.then(res=>res.text())
-.then(data=>{
-    document.getElementById('AboutDetail').innerHTML =data;
+fetch('/ABOUT_US_final.svg')
+.then(response => response.text())
+.then(data => {
+    
+    document.getElementById('us').innerHTML = data;
+    
 })
-.catch(error=>{
-    console.log("error pawa gese svg",error);
-})
+.catch(error => {
+    console.error('SVG load korte problem hoise:', error);
+});
