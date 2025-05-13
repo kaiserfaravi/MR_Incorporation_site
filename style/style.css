@@ -186,7 +186,7 @@
 
 /* =========================About us section ================================================= */
 
-/* Tooltip card style */
+/* Tooltip card style
     .hover-card {
       position: absolute;
       background-color: white;
@@ -197,9 +197,9 @@
       display: none;
       pointer-events: none;
       z-index: 1000;
-    } 
+    }  */
 
-/* .hover-card {
+.hover-card {
   position: absolute;
   background-color: white;
   border: 1px solid #ccc;
@@ -212,7 +212,7 @@
   z-index: 1000;
   width: 300px;   
   
-} */
+}
 
 
 .about-container{
@@ -253,4 +253,12 @@
     /*======================================About Us========================================  */
     .organo{
       background-color: aliceblue;
+    }
+
+
+
+    /* ======================================contact Us=================================== */
+    .contactUs{
+      width: 100%;
+      margin-top: 50px;
     }
