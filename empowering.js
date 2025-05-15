@@ -107,7 +107,18 @@ fetch('svg/map.svg')
   //     yellowCard.style.display = 'none';
   //   });
   // });
-// =================in a single function ============================================================
+// fetching about svg
+// fetch('svg/ABOUT_US_final.svg')
+// .then(response => response.text())
+// .then(data => {
+    
+//     document.getElementById('about-container').innerHTML = data;
+    
+// })
+// .catch(error => {
+//     console.error('SVG load korte problem hoise:', error);
+// });
+// ================= about us hover card in a single function ===========================================================
 function handleHover(cardId, selector) {
   const card = document.getElementById(cardId);
   const elements = document.querySelectorAll(selector);
