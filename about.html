@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Hover Cards</title>
+  <style>
+    .hover-card {
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 16px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      display: none;
+      pointer-events: none;
+      z-index: 1000;
+      width: 300px;
+    }
+
+    #about-container {
+      width: 100%;
+    }
+
+    #about-container svg {
+      width: 70%;
+      height: 50%;
+    }
+
+    .introduction:hover,
+    .yellow:hover,
+    .green:hover,
+    .orange:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="about-container">
+    <!-- SVG will be inserted here -->
+
+    <div class="hover-card" id="introduction">
+      <p>members</p>
+      <li><ol>x</ol></li>
+      <h4>Responsibilities</h4>
+      <p>Governance and policy making</p>
+
+    </div>
+    <div class="hover-card" id="orange">Lorem ipsum dolor sit amet consectetur</div>
+    <div class="hover-card" id="green">Green section</div>
+    <div class="hover-card" id="yellow">Yellow</div>
+  </div>
+
+  <script>
+    // Hover logic function
+    function handleHover(cardId, selector) {
+      const card = document.getElementById(cardId);
+      const elements = document.querySelectorAll(selector);
+
+      elements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          card.style.display = 'block';
+        });
+
+        el.addEventListener('mousemove', (e) => {
+          card.style.left = e.pageX + 15 + 'px';
+          card.style.top = e.pageY + 15 + 'px';
+        });
+
+        el.addEventListener('mouseleave', () => {
+          card.style.display = 'none';
+        });
+      });
+    }
+
+    // Load the SVG and attach hover events after loading
+    fetch('svg/ABOUT_US_final.svg')
+      .then(res => res.text())
+      .then(svgText => {
+        document.getElementById('about-container').insertAdjacentHTML('afterbegin', svgText);
+
+        // Now bind hover cards to SVG groups
+        handleHover('introduction', 'g.introduction');
+        handleHover('orange', 'g.orange');
+        handleHover('green', 'g.green');
+        handleHover('yellow', 'g.yellow');
+      });
+  </script>
+</body>
+</html>

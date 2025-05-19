@@ -225,7 +225,11 @@
       /* border: 1px solid #aaa; */
     }
 
-    .introduction:hover {
+    .introduction,
+    .yellow,
+    .green,
+    .orange
+    :hover {
       cursor: pointer;
     }
 /* ================================================================== */

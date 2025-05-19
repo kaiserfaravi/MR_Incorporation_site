@@ -1,7 +1,17 @@
-
+// fetching
+// fetch('/svg/ABOUT_US_final.svg')
+// .then(response => response.text())
+// .then(data => {
+    
+//     document.getElementById('about-container').innerHTML = data;
+    
+// })
+// .catch(error => {
+//     console.error('SVG load korte problem hoise:', error);
+// });
 
 // ===================== about Us Hover Card introduction section===========================
-// const card = document.getElementById('hoverCard');
+// const card = document.getElementById('introduction');
 //   const introElements = document.querySelectorAll('g.introduction');
 
 //   introElements.forEach(g => {
@@ -83,29 +93,66 @@
 // .catch(error => {
 //     console.error('SVG load korte problem hoise:', error);
 // });
+
+
+
 // ================= about us hover card in a single function ===========================================================
-function handleHover(cardId, selector) {
-  const card = document.getElementById(cardId);
-  const elements = document.querySelectorAll(selector);
+// function handleHover(cardId, selector) {
+//   const card = document.getElementById(cardId);
+//   const elements = document.querySelectorAll(selector);
 
-  elements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      card.style.display = 'block';
-    });
+//   elements.forEach(el => {
+//     el.addEventListener('mouseenter', () => {
+//       card.style.display = 'block';
+//     });
 
-    el.addEventListener('mousemove', (e) => {
-      card.style.left = e.pageX + 15 + 'px';
-      card.style.top = e.pageY + 15 + 'px';
-    });
+//     el.addEventListener('mousemove', (e) => {
+//       card.style.left = e.pageX + 15 + 'px';
+//       card.style.top = e.pageY + 15 + 'px';
+//     });
 
-    el.addEventListener('mouseleave', () => {
-      card.style.display = 'none';
-    });
-  });
-}
+//     el.addEventListener('mouseleave', () => {
+//       card.style.display = 'none';
+//     });
+//   });
+// }
 
-// Call the function for each card and selector pair
-handleHover('introduction', 'g.introduction');
-handleHover('orange', 'g.orange');
-handleHover('green', 'g.green');
-handleHover('yellow', 'g.yellow');
+// // Call the function for each card and selector pair
+// handleHover('introduction', 'g.introduction');
+// handleHover('orange', 'g.orange');
+// handleHover('green', 'g.green');
+// handleHover('yellow', 'g.yellow');
+
+// =============================================================================================
+  function handleHover(cardId, selector) {
+      const card = document.getElementById(cardId);
+      const elements = document.querySelectorAll(selector);
+
+      elements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          card.style.display = 'block';
+        });
+
+        el.addEventListener('mousemove', (e) => {
+          card.style.left = e.pageX + 15 + 'px';
+          card.style.top = e.pageY + 15 + 'px';
+        });
+
+        el.addEventListener('mouseleave', () => {
+          card.style.display = 'none';
+        });
+      });
+    }
+
+    // Load the SVG and attach hover events after loading
+    fetch('/svg/ABOUT_US_final.svg')
+      .then(res => res.text())
+      .then(svgText => {
+        document.getElementById('about-container').insertAdjacentHTML('afterbegin', svgText);
+
+        // Now bind hover cards to SVG groups
+        handleHover('introduction', 'g.introduction');
+        handleHover('orange', 'g.orange');
+        handleHover('green', 'g.green');
+        handleHover('yellow', 'g.yellow');
+      });
