@@ -140,10 +140,32 @@ function handleHover(cardId, selector) {
 }
 
 // Call the function for each card and selector pair
-handleHover('hoverCard', 'g.introduction');
+handleHover('introduction', 'g.introduction');
 handleHover('orange', 'g.orange');
 handleHover('green', 'g.green');
 handleHover('yellow', 'g.yellow');
+handleHover('org', 'g.Layer_43');
+
+// ======================organogram
+
+
+//  const LayerCard = document.getElementById('Layer_43');
+//   const LayerElements = document.querySelectorAll('g.Layer_43');
+
+//   LayerElements.forEach(g => {
+//     g.addEventListener('mouseenter', (e) => {
+//       LayerCard.style.display = 'block';
+//     });
+
+//     g.addEventListener('mousemove', (e) => {
+//       LayerCard.style.left = e.pageX + 15 + 'px';
+//       LayerCard.style.top = e.pageY + 15 + 'px';
+//     });
+
+//     g.addEventListener('mouseleave', () => {
+//       LayerCard.style.display = 'none';
+//     });
+//   });
 
 
   // =============================contact Us =======================================================
