@@ -1,8 +1,5 @@
 
 
-
-
-
 // ===================== about Us Hover Card introduction section===========================
 // const card = document.getElementById('hoverCard');
 //   const introElements = document.querySelectorAll('g.introduction');
@@ -112,7 +109,3 @@ handleHover('introduction', 'g.introduction');
 handleHover('orange', 'g.orange');
 handleHover('green', 'g.green');
 handleHover('yellow', 'g.yellow');
-
-
-
-
