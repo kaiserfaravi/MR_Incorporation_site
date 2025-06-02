@@ -1,5 +1,5 @@
   // Function to handle hover over paths with class 'business'
-  function setupBusinessHover(cardId,selector) {
+  function mapHover(cardId,selector) {
     const card = document.getElementById(cardId);
     const elements = document.querySelectorAll(selector);
     // const card = document.getElementById('CurrentBusinessCard');
@@ -29,7 +29,8 @@
       container.innerHTML = svgData;
 
       // Now setup hover after SVG is loaded
-      setupBusinessHover('CurrentBusinessCard','svg path.business');
+      mapHover('CurrentBusinessCard','svg path.business');
+      mapHover('expandableCountryCard','svg path.expandable');
     })
     .catch(err => {
       console.error('Failed to load SVG:', err);
