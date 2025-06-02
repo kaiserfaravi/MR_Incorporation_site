@@ -1,9 +1,11 @@
   // Function to handle hover over paths with class 'business'
-  function setupBusinessHover() {
-    const card = document.getElementById('businessCard');
-    const businessPaths = document.querySelectorAll('svg path.business');
+  function setupBusinessHover(cardId,selector) {
+    const card = document.getElementById(cardId);
+    const elements = document.querySelectorAll(selector);
+    // const card = document.getElementById('CurrentBusinessCard');
+    // const elements = document.querySelectorAll('svg path.business');
 
-    businessPaths.forEach(path => {
+    elements.forEach(path => {
       path.addEventListener('mouseenter', () => {
         card.style.display = 'block';
       }); 
@@ -27,7 +29,7 @@
       container.innerHTML = svgData;
 
       // Now setup hover after SVG is loaded
-      setupBusinessHover();
+      setupBusinessHover('CurrentBusinessCard','svg path.business');
     })
     .catch(err => {
       console.error('Failed to load SVG:', err);
