@@ -8,7 +8,7 @@
   /* ========== Base Styles ========== */
   
   main {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
     text-align: center;
   }
@@ -280,7 +280,7 @@
     }
 
     #map-container path:hover {
-       fill: #00bcd4; /* Hover color */
+       fill: #4ad9eb; /* Hover color */
             transform: scale(1.05); /* Zoom effect */
             cursor: pointer;
     }
