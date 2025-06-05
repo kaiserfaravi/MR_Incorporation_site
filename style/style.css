@@ -20,9 +20,9 @@
   }
 
   #menu-wheel{ 
-    margin: 5% 2% 5% 2%;
-    width: 50%;
-    margin: 10%;
+    width: 100%;
+    margin: -20% 0% -20% 0%;
+
   }
   #empowering{
     margin: 5% 2% 5% 2%;
@@ -255,8 +255,9 @@
       transform: scale(1.4); 
     }
     /*======================================About Us========================================  */
-    .organo{
-      background-color: aliceblue;
+    #organogramContainer{
+      width: 100%;
+      height: 100%;
     }
 
 
