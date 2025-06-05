@@ -1,5 +1,5 @@
 // fetching menu wheel
-fetch('svg/menuwheel.svg')
+fetch('svg/tmpMenuWheel.svg')
 .then(response => response.text())
 .then(data => {
     
