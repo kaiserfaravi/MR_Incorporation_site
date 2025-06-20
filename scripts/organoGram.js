@@ -35,6 +35,24 @@
       organogram('Country_Board_of_Directors','svg g.Country_Board_of_Directors');
       organogram('Regional','svg g.Regional');
       organogram('Central_Board_of_Directors','svg g.Central_Board_of_Directors');
+      organogram('executive','svg g.executive');
+      organogram('Country_CFO','svg g.Country_CFO');
+      organogram('Country_CEO','svg g.Country_CEO');
+      organogram('Regional_CEO','svg g.Regional_CEO');
+      organogram('Regional_CFO','svg g.Regional_CFO');
+      organogram('HR','svg g.HR');
+      organogram('Chairman','svg g.Chairman');
+      organogram('R_Executive_Committee','svg g.R_Executive_Committee');
+      organogram('CEExecutive_Committee','svg g.CEExecutive_Committee');
+      organogram('CE_Working_Committee','svg g.CE_Working_Committee');
+      organogram('Re_Working_Committee','svg g.Re_Working_Committee');
+      organogram('Co_Working_Committee','svg g.Co_Working_Committee');
+      organogram('Re_Technical_Committee','svg g.Re_Technical_Committee');
+      organogram('CE_Technical_Committee','svg g.CE_Technical_Committee');
+      organogram('C_Risk_Management_Committee','svg g.C_Risk_Management_Committee');
+      organogram('RE_Risk_Management_Committee','svg g.RE_Risk_Management_Committee');
+      organogram('Co_Risk_Management_Committee','svg g.Co_Risk_Management_Committee');
+
       
     })
     .catch(err => {
