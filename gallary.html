@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার Instagram গ্যালারি</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+            background: rgb(213, 191, 212);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            min-width: 150px;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover .post-image {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-caption {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-type {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin: 40px 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: rgba(255,107,107,0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .modal-info {
+            background: white;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .modal-caption {
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .modal-meta {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .refresh-btn:active {
+            animation: spin 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stats {
+                gap: 15px;
+            }
+
+            .stat-card {
+                min-width: 120px;
+                padding: 15px;
+            }
+        }
+
+        .no-posts {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin: 40px 0;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📸 আমার Instagram গ্যালারি</h1>
+            <p>আমার সব Instagram posts এখানে automatically update হয়</p>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <h3 id="totalPosts">0</h3>
+                <p>মোট পোস্ট</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="lastUpdate">--</h3>
+                <p>শেষ আপডেট</p>
+            </div>
+        </div>
+
+        <div id="status"></div>
+        
+        <div class="gallery-grid" id="gallery">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                Instagram posts লোড হচ্ছে...
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal" id="imageModal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <img class="modal-image" id="modalImage">
+                <div class="modal-info">
+                    <div class="modal-caption" id="modalCaption"></div>
+                    <div class="modal-meta" id="modalMeta"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="refresh-btn" onclick="refreshGallery()" title="Refresh Gallery">
+            🔄
+        </button>
+    </div>
+
+    <script>
+        // 🔥 এখানে আপনার Instagram Access Token বসান 🔥
+        const INSTAGRAM_ACCESS_TOKEN = 'IGAAIAz1KJSdVBZAE90bE9fbHVTSHZA4cWpsRmpGTVR2NXV1TWduaWI0UXpSMG05U3pWalA3NF9UT3RaLXg1UURoRUtBem8xb1VZASjVwVFhXa1ZAWcFlTMDJKSDl4ZA3Q3VlBGbFgydlczRTEtSGdxMmxhY3h3';
+        
+        // Auto refresh interval (মিনিটে)
+        const REFRESH_INTERVAL = 30;
+        
+        // Global variables
+        let posts = [];
+        let refreshTimer;
+
+        // Instagram API থেকে posts load করার function
+        async function loadInstagramPosts() {
+            if (!INSTAGRAM_ACCESS_TOKEN || INSTAGRAM_ACCESS_TOKEN === 'YOUR_ACCESS_TOKEN_HERE') {
+                showError('⚠️ Instagram Access Token দিন! Code এর উপরে INSTAGRAM_ACCESS_TOKEN এর জায়গায় আপনার token বসান।');
+                return;
+            }
+
+            try {
+                showStatus('🔄 Instagram posts লোড হচ্ছে...');
+                
+                const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp,permalink&limit=50&access_token=${INSTAGRAM_ACCESS_TOKEN}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error.message);
+                }
+
+                posts = data.data || [];
+                displayPosts(posts);
+                updateStats();
+                clearStatus();
+                
+                console.log(`✅ ${posts.length} টি Instagram post successfully loaded!`);
+                
+            } catch (error) {
+                console.error('Error loading Instagram posts:', error);
+                showError(`❌ Error: ${error.message}`);
+            }
+        }
+
+        // Posts display করার function
+        function displayPosts(posts) {
+            const gallery = document.getElementById('gallery');
+            
+            if (posts.length === 0) {
+                gallery.innerHTML = '<div class="no-posts">😔 কোন Instagram post পাওয়া যায়নি!</div>';
+                return;
+            }
+
+            gallery.innerHTML = '';
+
+            posts.forEach((post, index) => {
+                const postCard = document.createElement('div');
+                postCard.className = 'post-card';
+                
+                const mediaUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
+                const caption = post.caption || 'কোন caption নেই';
+                const date = new Date(post.timestamp).toLocaleDateString('bn-BD', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                const time = new Date(post.timestamp).toLocaleTimeString('bn-BD', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                postCard.innerHTML = `
+                    <img src="${mediaUrl}" alt="Instagram Post" class="post-image" loading="lazy">
+                    <div class="post-content">
+                        <div class="post-caption">${caption}</div>
+                        <div class="post-meta">
+                            <div class="post-date">
+                                📅 ${date} • 🕒 ${time}
+                            </div>
+                            <div class="post-type">
+                                ${post.media_type === 'VIDEO' ? '🎥 ভিডিও' : '📸 ছবি'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                postCard.onclick = () => openModal(post);
+                gallery.appendChild(postCard);
+            });
+        }
+
+        // Stats update করার function
+        function updateStats() {
+            document.getElementById('totalPosts').textContent = posts.length;
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('bn-BD', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Status দেখানোর function
+        function showStatus(message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `
+                <div style="text-align: center; color: white; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 20px 0; backdrop-filter: blur(10px);">
+                    ${message}
+                </div>
+            `;
+        }
+
+        // Error দেখানোর function
+        function showError(message) {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        // Status clear করার function
+        function clearStatus() {
+            document.getElementById('status').innerHTML = '';
+        }
+
+        // Modal খোলার function
+        function openModal(post) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalMeta = document.getElementById('modalMeta');
+            
+            const mediaUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
+            const caption = post.caption || 'কোন caption নেই';
+            const date = new Date(post.timestamp).toLocaleDateString('bn-BD', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            modal.style.display = 'block';
+            modalImg.src = mediaUrl;
+            modalCaption.textContent = caption;
+            modalMeta.innerHTML = `
+                📅 ${date} • ${post.media_type === 'VIDEO' ? '🎥 ভিডিও' : '📸 ছবি'}
+                <br><a href="${post.permalink}" target="_blank" style="color: #667eea; text-decoration: none;">🔗 Instagram এ দেখুন</a>
+            `;
+        }
+
+        // Modal বন্ধ করার function
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Manual refresh function
+        function refreshGallery() {
+            loadInstagramPosts();
+        }
+
+        // Auto refresh setup
+        function startAutoRefresh() {
+            if (refreshTimer) {
+                clearInterval(refreshTimer);
+            }
+            
+            refreshTimer = setInterval(() => {
+                console.log('🔄 Auto refreshing Instagram posts...');
+                loadInstagramPosts();
+            }, REFRESH_INTERVAL * 60 * 1000);
+            
+            console.log(`🔄 Auto refresh enabled (every ${REFRESH_INTERVAL} minutes)`);
+        }
+
+        // Page load হলে initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Posts load করুন
+            loadInstagramPosts();
+            
+            // Auto refresh চালু করুন
+            startAutoRefresh();
+            
+            // Modal এর জন্য event listeners
+            document.getElementById('imageModal').onclick = function(event) {
+                if (event.target === this) {
+                    closeModal();
+                }
+            };
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- User ID: 10024475017601191
+            Access Token:  -->

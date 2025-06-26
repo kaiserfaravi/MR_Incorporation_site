@@ -142,14 +142,72 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
 
 <!--gallary Section  -->
 
-<div id="gallary">
-  <img src="" alt="">
-</div>
+
+
+ <div class="container">
+        <div class="header">
+            <h1>📸 My Gallary Feed</h1>
+            <p>Every Post Will be Autometically</p>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <h3 id="totalPosts">0</h3>
+                <p>Total Post</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="lastUpdate">--</h3>
+                <p>last Update</p>
+            </div>
+        </div>
+
+        <div id="status"></div>
+        
+        <div class="gallery-grid" id="gallery">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                All posts Loading....
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal" id="imageModal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <img class="modal-image" id="modalImage">
+                <div class="modal-info">
+                    <div class="modal-caption" id="modalCaption"></div>
+                    <div class="modal-meta" id="modalMeta"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="refresh-btn" onclick="refreshGallery()" title="Refresh Gallery">
+            🔄
+        </button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- gallary section ends here -->
+
+
 
 
 <div class="contactUs">
   <div id="contact"></div>
 </div>
+
+
+
 
 
   </main>
@@ -163,6 +221,7 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
 <script src="/scripts/organoGram.js"></script>
 <script src="/scripts/contactUs.js"></script>
 <script src="/scripts/coglagamards.js"></script>
+<script src="/scripts/gallary.js"></script>
 <!-- <script src="/scripts/trial.js"></script> -->
 <script src="/scripts/map.js"></script>
 
