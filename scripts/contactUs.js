@@ -19,3 +19,4 @@
 .catch(error => {
     console.error('SVG load korte problem hoise:', error);
 });
+

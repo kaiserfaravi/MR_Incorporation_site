@@ -1,6 +1,8 @@
   
         // 🔥 এখানে আপনার Instagram Access Token বসান 🔥
-        const INSTAGRAM_ACCESS_TOKEN = 'IGAAIAz1KJSdVBZAE90bE9fbHVTSHZA4cWpsRmpGTVR2NXV1TWduaWI0UXpSMG05U3pWalA3NF9UT3RaLXg1UURoRUtBem8xb1VZASjVwVFhXa1ZAWcFlTMDJKSDl4ZA3Q3VlBGbFgydlczRTEtSGdxMmxhY3h3';
+        const INSTAGRAM_ACCESS_TOKEN = 'IGAAIAz1KJSdVBZAE1FUTh0VUlkNlBfWWxrVE1ZAVUoxdXR4TjZAUaVdEdFcxT3JHS1Utb3llV25hWnVHc3B0cF84ZAW1EaEoyQWFUVDZAOc2dpOFRGMTVfdW5rb1VUZA1FVc09QV0pHSnkxY1d5Tml3VlBva1F3';
+        // my token skf
+        // const INSTAGRAM_ACCESS_TOKEN = 'IGAAIAz1KJSdVBZAE90bE9fbHVTSHZA4cWpsRmpGTVR2NXV1TWduaWI0UXpSMG05U3pWalA3NF9UT3RaLXg1UURoRUtBem8xb1VZASjVwVFhXa1ZAWcFlTMDJKSDl4ZA3Q3VlBGbFgydlczRTEtSGdxMmxhY3h3';
         
         // Auto refresh interval (মিনিটে)
         const REFRESH_INTERVAL = 30;
@@ -17,9 +19,9 @@
             }
 
             try {
-                showStatus('🔄 Instagram posts লোড হচ্ছে...');
+                showStatus('🔄 Instagram posts Loading...');
                 
-                const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp,permalink&limit=50&access_token=${INSTAGRAM_ACCESS_TOKEN}`);
+                const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp,permalink&limit=21&access_token=${INSTAGRAM_ACCESS_TOKEN}`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -60,7 +62,7 @@
                 postCard.className = 'post-card';
                 
                 const mediaUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
-                const caption = post.caption || 'কোন caption নেই';
+                const caption = post.caption || 'No Caption ';
                 const date = new Date(post.timestamp).toLocaleDateString('bn-BD', {
                     year: 'numeric',
                     month: 'long',
@@ -80,7 +82,7 @@
                                 📅 ${date} • 🕒 ${time}
                             </div>
                             <div class="post-type">
-                                ${post.media_type === 'VIDEO' ? '🎥 ভিডিও' : '📸 ছবি'}
+                                ${post.media_type === 'VIDEO' ? '🎥 Video' : '📸 Image'}
                             </div>
                         </div>
                     </div>
@@ -129,7 +131,7 @@
             const modalMeta = document.getElementById('modalMeta');
             
             const mediaUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
-            const caption = post.caption || 'কোন caption নেই';
+            const caption = post.caption || 'No Caption';
             const date = new Date(post.timestamp).toLocaleDateString('bn-BD', {
                 year: 'numeric',
                 month: 'long',
@@ -142,7 +144,7 @@
             modalImg.src = mediaUrl;
             modalCaption.textContent = caption;
             modalMeta.innerHTML = `
-                📅 ${date} • ${post.media_type === 'VIDEO' ? '🎥 ভিডিও' : '📸 ছবি'}
+                📅 ${date} • ${post.media_type === 'VIDEO' ? '🎥 Video' : '📸 Image'}
                 <br><a href="${post.permalink}" target="_blank" style="color: #667eea; text-decoration: none;">🔗 Instagram এ দেখুন</a>
             `;
         }
