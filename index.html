@@ -143,32 +143,13 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
 <!-- Map Cards Ends -->
 
 <!--gallary Section  -->
- <div class="container" id="gallarysection">
-        <div class="header">
-            <h1>📸 MR Incorporation  Gallary Feed</h1>
+ <div class="container">
+        <div class="slider-container" id="gallerySlider">
+            <button class="slider-btn prev-btn" onclick="prevSlide()">❮</button>
+            <div class="slider-track" id="sliderTrack"></div>
+            <button class="slider-btn next-btn" onclick="nextSlide()">❯</button>
         </div>
 
-        <div class="stats" id="stats">
-            <div class="stat-card">
-                <h3 id="totalPosts">0</h3>
-                <p>Total Post</p>
-            </div>
-            <div class="stat-card">
-                <h3 id="lastUpdate">--</h3>
-                <p>last Update</p>
-            </div>
-        </div>
-
-        <div id="status"></div>
-        
-        <div class="gallery-grid" id="gallery">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                All posts Loading....
-            </div>
-        </div>
-        
-        <!-- Modal -->
         <div class="modal" id="imageModal">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-content">
@@ -179,12 +160,7 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
                 </div>
             </div>
         </div>
-        
-        <button class="refresh-btn" onclick="refreshGallery()" title="Refresh Gallery">
-            🔄
-        </button>
     </div>
-
 <!-- gallary section ends here -->
 
 
@@ -312,7 +288,8 @@ Alt + 5 → Jump to Contact
 <script src="/scripts/organoGram.js"></script>
 <script src="/scripts/contactUs.js"></script>
 <script src="/scripts/coglagamards.js"></script>
-<script src="/scripts/gallary.js"></script>
+<script src="/scripts/slider.js"></script>
+<!-- <script src="/scripts/gallary.js"></script> -->
 <script src="/scripts/map.js"></script>
 
 </body>
