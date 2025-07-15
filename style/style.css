@@ -1,9 +1,9 @@
 /* ========== CSS Reset ========== */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
   
   /* ========== Base Styles ========== */
   
@@ -11,10 +11,12 @@
     max-width: 1300px;
     margin: auto;
     text-align: center;
+   
   }
   /* ================================first part==================== */
   .first-part{
     margin-top: 5%;
+     margin-bottom: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -288,6 +290,7 @@
 
 #about-container{
   width: 100%;
+  margin-bottom: 20%;
 }
 
   #about-container svg{
@@ -309,13 +312,13 @@
     }
 /* ================================================================== */
 #historyContainer{
-  width: 90%;
-  height: 50%;
-  margin-top: 5%;
-  margin-bottom: 60%;
-
-
+ border: 5px solid orange;
+ width: 100%;
  
+}
+#historyContainer svg{
+  width:60%;
+  
 }
 
 /* History Zoom:hovering section has been commented/deleted  */
@@ -336,7 +339,8 @@
      max-width: 80%;
       height: auto;
       display: block;
-     margin: 5% auto 0 auto;
+     margin: 20% auto 10% auto;
+     /* margin-top: ; */
 /* top: 5%, right: auto, bottom: 0, left: auto */
 
 
@@ -355,7 +359,9 @@
 
     #map-container{
       max-width: 100%;
-      margin: 13% auto 15% auto;
+      padding-top: 10%;
+      margin-top: 20%;
+      margin-bottom: 20%;
 /* top: 5%, right: auto, bottom: 0, left: auto */
      
     }
@@ -389,8 +395,11 @@
       max-width: 100%;
       height: auto;
       display: block;
-      margin-top: 25%;
-      margin-bottom: 25%; 
+     /* border: 2px solid black; */
+     margin-bottom: 25%;
+     margin-top: 25%;
+     padding-top: 20%;
+     padding-bottom: 20%;
     }
 
     /* ======================================gallary================================================ */
@@ -401,11 +410,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             /* background: rgb(213, 191, 212); */
             min-height: 100vh;
-            padding: 20px;
+            /* padding: 20px; */
         }
         .container { max-width: 1200px; margin: 0 auto; }
 
-        .slider-container { position: relative; overflow: hidden; }
+        .slider-container { position: relative; overflow: hidden; padding-top: 5%; }
 
         .slider-track {
             display: flex; transition: transform 0.5s ease;
@@ -437,7 +446,7 @@
 
         .post-image {
             width: 60%; height: 320px; object-fit: cover;
-            margin-left: 20%;
+            margin-left: 5%;
             margin-top:5%; margin-bottom: 5%;
             transition: transform 0.3s ease;
         }

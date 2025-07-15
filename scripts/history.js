@@ -1,4 +1,4 @@
-fetch('/svg/History.svg')
+fetch('/svg/History_final.svg')
 .then(response => response.text())
 .then(data => {
     
