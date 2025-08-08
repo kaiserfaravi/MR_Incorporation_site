@@ -145,7 +145,7 @@
     }
 
     // Load the SVG and attach hover events after loading
-    fetch('/svg/ABOUT_US.svg')
+    fetch('/svg/aboutUS.svg')
       .then(res => res.text())
       .then(svgText => {
         document.getElementById('about-container').insertAdjacentHTML('afterbegin', svgText);

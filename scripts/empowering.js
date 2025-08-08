@@ -1,5 +1,5 @@
 // fetching empowering progresss:
-fetch('svg/Empowering_Progress_final.svg')
+fetch('/svg/Empowering_Progress.svg')
 .then(response => response.text())
 .then(data => {
     
