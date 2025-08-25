@@ -11,7 +11,7 @@
   <main>
 
     <!-- Menu wheel and Empowering starts -->
-    <div class="first-part">
+    <div class="first-part" id="menu-container">
         <div id="empowering"></div>
         <div id="menu-wheel"></div>
     </div>
@@ -188,11 +188,8 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
 
 <!-- Contacts Section starts -->
 <div class="contactUs">
-  <div id="contact"></div>
-
-<!-- svg starts -->
-
-<?xml version="1.0" encoding="UTF-8"?>
+  <div id="contact">
+    <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1090.4455 509.3971">
   <g isolation="isolate">
     <g id="Layer_1" data-name="Layer 1">
@@ -743,6 +740,11 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
     </a>
   </g>
 </svg>
+  </div>
+
+<!-- svg starts -->
+
+
 
 <!-- svg end here -->
 
@@ -768,114 +770,7 @@ Oversight & Mitigation Of Financial, Operational & Compliance Challenges For The
 <!-- Contacts Section Ends -->
 
   </main>
-<script>
-  // Accessibility Enhancements
-
-// Skip to main content link
-const skipLink = document.createElement('a');
-skipLink.href = "#about-container";
-skipLink.textContent = "Skip to main content";
-skipLink.style.position = "absolute";
-skipLink.style.top = "10px";
-skipLink.style.left = "10px";
-skipLink.style.background = "#000";
-skipLink.style.color = "#fff";
-skipLink.style.padding = "8px";
-skipLink.style.zIndex = "9999";
-skipLink.style.textDecoration = "none";
-skipLink.style.fontSize = "14px";
-skipLink.style.borderRadius = "4px";
-skipLink.addEventListener('focus', () => skipLink.style.display = "block");
-skipLink.addEventListener('blur', () => skipLink.style.display = "none");
-skipLink.style.display = "none";
-document.body.insertBefore(skipLink, document.body.firstChild);
-
-// ARIA Labels for major sections
-document.querySelector('main').setAttribute('role', 'main');
-document.getElementById('about-container')?.setAttribute('aria-label', 'About MR Incorporation');
-document.getElementById('organogramContainer')?.setAttribute('aria-label', 'Organizational Structure');
-document.getElementById('map-container')?.setAttribute('aria-label', 'Global Presence Map');
-document.getElementById('gallarysection')?.setAttribute('aria-label', 'Photo Gallery of MR Incorporation');
-document.getElementById('contact')?.setAttribute('aria-label', 'Contact Information');
-
-// Add alt to gallery images
-const observer = new MutationObserver(() => {
-    const images = document.querySelectorAll('#gallery img');
-    images.forEach(img => {
-        if (!img.alt) img.alt = "Gallery Image from MR Incorporation";
-    });
-});
-observer.observe(document.getElementById('gallery'), { childList: true, subtree: true });
-
-// Modal Accessibility
-const modal = document.getElementById('imageModal');
-if (modal) {
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-labelledby', 'modalCaption');
-
-    // Trap focus inside modal
-    const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    function trapFocus(e) {
-        const focusableElements = modal.querySelectorAll(focusableSelectors);
-        const firstEl = focusableElements[0];
-        const lastEl = focusableElements[focusableElements.length - 1];
-
-        if (e.key === 'Tab') {
-            if (e.shiftKey) { // Shift + Tab
-                if (document.activeElement === firstEl) {
-                    e.preventDefault();
-                    lastEl.focus();
-                }
-            } else { // Tab
-                if (document.activeElement === lastEl) {
-                    e.preventDefault();
-                    firstEl.focus();
-                }
-            }
-        }
-    }
-    modal.addEventListener('keydown', trapFocus);
-}
-
-// Accessible labels for buttons
-document.querySelector('.refresh-btn')?.setAttribute('aria-label', 'Refresh Gallery');
-
-// Keyboard Shortcuts for Navigation
-document.addEventListener('keydown', (e) => {
-    if (e.altKey && e.key.toLowerCase() === '1') {
-        document.getElementById('about-container')?.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (e.altKey && e.key.toLowerCase() === '2') {
-        document.getElementById('organogramContainer')?.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (e.altKey && e.key.toLowerCase() === '3') {
-        document.getElementById('map-container')?.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (e.altKey && e.key.toLowerCase() === '4') {
-        document.getElementById('gallarysection')?.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (e.altKey && e.key.toLowerCase() === '5') {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    }
-});
-
-// Make hover-cards focusable for keyboard users
-document.querySelectorAll('.hover-card').forEach(card => {
-    card.setAttribute('tabindex', '0');
-});
-
-// Optional: Inform users about shortcuts in console
-console.log(`
-🔑 Keyboard Shortcuts Enabled:
-Alt + 1 → Jump to About Section
-Alt + 2 → Jump to Organogram
-Alt + 3 → Jump to Map
-Alt + 4 → Jump to Gallery
-Alt + 5 → Jump to Contact
-`);
-
-</script>
+  <script src="/scripts/accesibility.js"></script>
 <script src="/scripts/empowering.js"></script>
 <script src="/scripts/menu.js"></script>
 <script src="/scripts/aboutUs.js"></script>
