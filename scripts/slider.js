@@ -1,5 +1,5 @@
 
-        const INSTAGRAM_ACCESS_TOKEN = 'IGAAIAz1KJSdVBZAE5wQ21NNXl3UzlhRVU2dW1jTWtFNEZAEdVIzRXdORXhGN2VOREpIYkMxV3NKdnYwVmJvUkduUTR3X000UlBaREhzOTNMVUpCejdGQzA2S0ZASUXMyR2ZAUUGNZAc3FEblVNYU4zbUd4LWxn';
+        const INSTAGRAM_ACCESS_TOKEN = `IGAAIAz1KJSdVBZAFFjc0FBU21mUFlGaUpNUjc5SzVYMDkwRUJCNDBtX3lKQzdEYXFnNXdmcnREOUt0OXlUeUcxODZAnZAjQ1T2dQVGtOSDk0Yko0U2JWN3BOcVkySXVxYjI1c3FzdVhweUJzMklncXlENXBB`;
         // 8/8/25-new refresh token
         let posts = [];
         let currentSlide = 0;
@@ -13,14 +13,14 @@
                 posts = data.data || [];
                 displayPosts(posts);
             } catch (err) {
-                alert('Instagram ডেটা লোড করতে সমস্যা হয়েছে!');
+                alert('There is problem to loading Instagram data');
             }
         }
 
         function displayPosts(posts) {
             const track = document.getElementById('sliderTrack');
             if (!posts.length) {
-                track.innerHTML = '<div class="post-card" style="margin:20px; padding:20px; text-align:center;">😔 কোন Instagram post পাওয়া যায়নি!</div>';
+                track.innerHTML = '<div class="post-card" style="margin:20px; padding:20px; text-align:center;">😔 There is No Instagram post Or Sever Error.PLease stay cool We working on it. </div>';
                 return;
             }
 
@@ -30,9 +30,9 @@
                 slide.className = 'slider-item';
 
                 const mediaUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
-                const caption = post.caption || 'কোন caption নেই';
-                const date = new Date(post.timestamp).toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
-                const time = new Date(post.timestamp).toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+                const caption = post.caption || 'No Caption ';
+                const date = new Date(post.timestamp).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+                const time = new Date(post.timestamp).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
                 slide.innerHTML = `
                     <div class="post-card">
@@ -41,7 +41,7 @@
                             <div class="post-caption">${caption}</div>
                             <div class="post-meta">
                                 <div>📅 ${date} • 🕒 ${time}</div>
-                                <div class="post-type">${post.media_type === 'VIDEO' ? '🎥 ভিডিও' : '📸 ছবি'}</div>
+                                <div class="post-type">${post.media_type === 'VIDEO' ? '🎥 Video' : '📸 Image'}</div>
                             </div>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
         function openModal(post) {
             document.getElementById('imageModal').style.display = 'block';
             document.getElementById('modalImage').src = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
-            document.getElementById('modalCaption').textContent = post.caption || 'কোন caption নেই';
-            document.getElementById('modalMeta').innerHTML = `📅 ${new Date(post.timestamp).toLocaleDateString('bn-BD')} • <a href="${post.permalink}" target="_blank" style="color:#667eea;">🔗 Instagram এ দেখুন</a>`;
+            document.getElementById('modalCaption').textContent = post.caption || 'No Caption';
+            document.getElementById('modalMeta').innerHTML = `📅 ${new Date(post.timestamp).toLocaleDateString('bn-BD')} • <a href="${post.permalink}" target="_blank" style="color:#667eea;">🔗See In Instagram </a>`;
         }
 
         function closeModal() {
